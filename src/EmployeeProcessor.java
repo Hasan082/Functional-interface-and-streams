@@ -22,8 +22,18 @@ public class EmployeeProcessor {
         System.out.println("Name - Department List: " + nameAndDepList);
 
         // Calculate Average salary
-        double averarageSalary = employeList.stream().mapToDouble(Employee::getSalary).average().getAsDouble();
+        double averarageSalary = employeList.stream().mapToDouble(Employee::getSalary).average().orElse(0.0);
         System.out.println("Average salary: " + averarageSalary);
+
+        // Filter employees whose age is above 30
+        int ageThreshold = 30;
+        List<Employee> filterEmployees = employeList.stream().filter(emp -> emp.getAge() > ageThreshold)
+                .collect(Collectors.toList());
+
+        // Print filtered employees over 30
+        filterEmployees
+                .forEach(x -> System.out.println("Name: " + x.getName() + ", Age: " + x.getAge() + ", Department: "
+                        + x.getDepartment() + ", Salary: " + x.getSalary()));
 
     }
 }

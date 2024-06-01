@@ -21,5 +21,9 @@ public class EmployeeProcessor {
         List<String> nameAndDepList = employeList.stream().map(nameAndDepartment).collect(Collectors.toList());
         System.out.println("Name - Department List: " + nameAndDepList);
 
+        // Calculate Average salary
+        double averarageSalary = employeList.stream().mapToDouble(Employee::getSalary).average().getAsDouble();
+        System.out.println("Average salary: " + averarageSalary);
+
     }
 }
